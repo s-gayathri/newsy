@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:newsy/bottomBar.dart';
+import 'package:newsy/topBar.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+      home: Scaffold(
+    backgroundColor: Colors.amber,
+    //just so that you can see the top and bottom bar clearly!
+    //We'll change it later.
+    appBar: PreferredSize(
+      preferredSize: Size(double.infinity, 111),
+      child: TopBar(),
+    ),
+    bottomNavigationBar: PreferredSize(
+        child: BottomBar(), preferredSize: Size(double.infinity, 50)),
+  )));
 }
 
 class MyApp extends StatelessWidget {
