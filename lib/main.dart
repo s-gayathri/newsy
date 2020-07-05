@@ -30,9 +30,9 @@ void main() {
       // ),
 
       // USING IT ALONG WITH THE CATEGORIES TAB BAR
-      appBar: ExtendedAppBar(categories),
+      // appBar: ExtendedAppBar(categories),
 
-      body: NewsHeadlines("specify category / search value"),
+      // body: NewsHeadlines("specify category / search value"),
 
       bottomNavigationBar: PreferredSize(
           child: CustomBottomBar(), preferredSize: Size(double.infinity, 50)),
