@@ -1,44 +1,67 @@
 import 'package:flutter/material.dart';
-import 'package:newsy/customBottomBar.dart';
-import 'package:newsy/extendedAppBar.dart';
-import 'package:newsy/customAppBar.dart';
-import 'package:newsy/newsHeadlines.dart';
+import 'package:newsy/pages/settings.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:newsy/components/newsArticle.dart';
+import 'package:newsy/pages/animation.dart';
+import 'package:newsy/pages/newsList.dart';
+import 'package:newsy/pages/preferences.dart';
+import 'package:newsy/pages/search.dart';
+import 'package:newsy/pages/searchResults.dart';
 
-void main() {
-  List<String> categories = [
-    'General',
-    'Sports',
-    'Health',
-    'Fashion',
-    'Technology',
-    'Science',
-    'Government',
-  ];
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs;
+  prefs = await SharedPreferences.getInstance();
+  final bool isFirstLaunch = prefs.getBool('isFirstLaunch') ?? true;
 
-  runApp(MaterialApp(
-      home: DefaultTabController(
-    length: categories.length,
-    child: Scaffold(
-      backgroundColor: Colors.amber,
-      // Just so that you can see the top and bottom bar clearly!
-      // We'll change it later.
-
-      // USING JUST THE TOP BAR
-      // appBar: PreferredSize(
-      //   preferredSize: Size(double.infinity, 111.0),
-      //   child: CustomAppBar(),
-      // ),
-
-      // USING IT ALONG WITH THE CATEGORIES TAB BAR
-      // appBar: ExtendedAppBar(categories),
-
-      // body: NewsHeadlines("specify category / search value"),
-
-      bottomNavigationBar: PreferredSize(
-          child: CustomBottomBar(), preferredSize: Size(double.infinity, 50)),
-    ),
-  )));
+  if (isFirstLaunch == true)
+    runApp(
+      MaterialApp(
+        home: NewsList(),
+        initialRoute: '/choose-preferences',
+        routes: {
+          '/animation': (context) => NewsyAnimation(),
+          '/home': (context) => NewsList(),
+          '/settings': (context) => Settings(),
+          '/choose-preferences': (context) => Preferences(),
+          '/search': (context) => SearchBar(),
+          '/search-results': (context) => SearchResults(),
+          '/news-article': (context) => NewsArticle(),
+        },
+      ),
+    );
+  else
+    runApp(
+      MaterialApp(
+        home: NewsList(),
+        initialRoute: '/home',
+        routes: {
+          '/animation': (context) => NewsyAnimation(),
+          '/home': (context) => NewsList(),
+          '/settings': (context) => Settings(),
+          '/search': (context) => SearchBar(),
+          '/search-results': (context) => SearchResults(),
+          '/news-article': (context) => NewsArticle(),
+        },
+      ),
+    );
 }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

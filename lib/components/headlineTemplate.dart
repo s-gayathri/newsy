@@ -1,33 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:newsy/news.dart';
+import 'package:newsy/models/headline.dart';
 
-class NewsHeadlines extends StatefulWidget {
-  final String topic;
-  NewsHeadlines(this.topic);
+class HeadlineTemplate extends StatelessWidget {
+  final Headline headline;
 
-  // MAKE API REQUEST FOR THIS SPECIFIED TOPIC
-  final List<News> news = News.getNews();
-
-  @override
-  _NewsHeadlinesState createState() => _NewsHeadlinesState(news);
-}
-
-class _NewsHeadlinesState extends State<NewsHeadlines> {
-  List<News> news;
-  _NewsHeadlinesState(this.news);
+  HeadlineTemplate({this.headline});
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: GridView.count(
-      crossAxisCount: 1,
-      childAspectRatio: MediaQuery.of(context).size.width /
-          (MediaQuery.of(context).size.height / 3.25),
-      children: news.map((headline) => _headlineTemplate(headline)).toList(),
-    ));
-  }
-
-  Widget _headlineTemplate(News headline) {
     return Container(
       height: 250.0,
       margin: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 10.0),
@@ -35,7 +15,7 @@ class _NewsHeadlinesState extends State<NewsHeadlines> {
           borderRadius: BorderRadius.circular(10.0),
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: NetworkImage(headline.image),
+            image: NetworkImage(headline.urlToImage),
           )),
       child: Stack(
         children: <Widget>[

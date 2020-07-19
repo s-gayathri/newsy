@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:newsy/customTabBar.dart';
-import 'package:newsy/customAppBar.dart';
+import 'package:newsy/components/customTabBar.dart';
+import 'package:newsy/components/customAppBar.dart';
 
 class ExtendedAppBar extends StatefulWidget implements PreferredSizeWidget {
   final List<String> categories;
@@ -25,6 +25,8 @@ class _ExtendedAppBarState extends State<ExtendedAppBar> {
   Widget build(BuildContext context) {
     return Container(
       child: AppBar(
+        leading:
+            Container(), // remove if back button is need on the news headlines page
         backgroundColor: const Color(0xfffffefe),
         elevation: 0,
         flexibleSpace: Column(

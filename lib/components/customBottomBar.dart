@@ -12,41 +12,36 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
       width: MediaQuery.of(context).size.width,
       height: 50,
       child: Container(
-        // margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        color: Colors.transparent,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text(
-              '1',
-              style: TextStyle(
-                fontFamily: 'Pacifico',
-                fontSize: 25,
-                color: Colors.black,
+            IconButton(
+              onPressed: () => Navigator.pushNamed(context, '/settings'),
+              icon: Icon(
+                Icons.settings,
+                size: 30.0,
               ),
             ),
-            Text(
-              '2',
-              style: TextStyle(
-                fontFamily: 'Pacifico',
-                fontSize: 25,
-                color: Colors.black,
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 10,
+            ),
+            IconButton(
+              onPressed: () => Navigator.pushNamed(context, '/home'),
+              icon: Icon(
+                Icons.dashboard,
+                size: 30.0,
               ),
             ),
-            Text(
-              '3',
-              style: TextStyle(
-                fontFamily: 'Pacifico',
-                fontSize: 25,
-                color: Colors.black,
-              ),
+            SizedBox(
+              width: MediaQuery.of(context).size.width / 10,
             ),
-            Text(
-              '4',
-              style: TextStyle(
-                fontFamily: 'Pacifico',
-                fontSize: 25,
-                color: Colors.black,
+            IconButton(
+              onPressed: () => Navigator.pushNamed(context, '/search'),
+              icon: Icon(
+                Icons.search,
+                size: 30.0,
               ),
             ),
           ],
